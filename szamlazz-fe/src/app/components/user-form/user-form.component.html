@@ -1,0 +1,97 @@
+<div class="form-container">
+  <div class="card">
+    <div class="card-header">
+      <h1>{{ isEditMode ? 'Felhasználó szerkesztése' : 'Új felhasználó létrehozása' }}</h1>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+
+        <!-- Vezetéknév -->
+        <div class="form-group">
+          <label for="lastname">Vezetéknév</label>
+          <input id="lastname" type="text" formControlName="lastname" placeholder="pl. Gipsz">
+          <!-- Hibaüzenetek a Vezetéknévhez -->
+          <div *ngIf="userForm.get('lastname')?.invalid && (userForm.get('lastname')?.dirty || userForm.get('lastname')?.touched)" class="error-container">
+            <small class="error-message" *ngIf="userForm.get('lastname')?.hasError('required')">
+              A vezetéknév megadása kötelező.
+            </small>
+            <small class="error-message" *ngIf="userForm.get('lastname')?.hasError('minlength')">
+              A vezetéknévnek legalább 2 karakter hosszúnak kell lennie.
+            </small>
+            <small class="error-message" *ngIf="userForm.get('lastname')?.hasError('maxlength')">
+              A vezetéknév maximum 64 karakter lehet.
+            </small>
+          </div>
+        </div>
+
+        <!-- Keresztnév -->
+        <div class="form-group">
+          <label for="firstname">Keresztnév</label>
+          <input id="firstname" type="text" formControlName="firstname" placeholder="pl. Jakab">
+          <!-- Hibaüzenetek a Keresztnévhez -->
+          <div *ngIf="userForm.get('firstname')?.invalid && (userForm.get('firstname')?.dirty || userForm.get('firstname')?.touched)" class="error-container">
+            <small class="error-message" *ngIf="userForm.get('firstname')?.hasError('required')">
+              A keresztnév megadása kötelező.
+            </small>
+            <small class="error-message" *ngIf="userForm.get('firstname')?.hasError('minlength')">
+              A keresztnévnek legalább 2 karakter hosszúnak kell lennie.
+            </small>
+            <small class="error-message" *ngIf="userForm.get('firstname')?.hasError('maxlength')">
+              A keresztnév maximum 64 karakter lehet.
+            </small>
+          </div>
+        </div>
+
+        <!-- Cím -->
+        <div class="form-group">
+          <label for="address">Cím</label>
+          <input id="address" type="text" formControlName="address" placeholder="pl. 1234 Budapest, Minta utca 5.">
+          <!-- Hibaüzenet a Címhez -->
+          <div *ngIf="userForm.get('address')?.invalid && (userForm.get('address')?.dirty || userForm.get('address')?.touched)" class="error-container">
+            <small class="error-message" *ngIf="userForm.get('address')?.hasError('maxlength')">
+              A cím maximum 128 karakter lehet.
+            </small>
+          </div>
+        </div>
+
+        <!-- Telefon -->
+        <div class="form-group">
+          <label for="telephone">Telefonszám</label>
+          <input id="telephone" type="text" formControlName="telephone" placeholder="pl. +36 30 123 4567">
+          <!-- Hibaüzenetek a Telefonszámhoz -->
+          <div *ngIf="userForm.get('telephone')?.invalid && (userForm.get('telephone')?.dirty || userForm.get('telephone')?.touched)" class="error-container">
+            <small class="error-message" *ngIf="userForm.get('telephone')?.hasError('pattern')">
+              Érvénytelen telefonszám formátum.
+            </small>
+             <small class="error-message" *ngIf="userForm.get('telephone')?.hasError('maxlength')">
+              A telefonszám maximum 128 karakter lehet.
+            </small>
+          </div>
+        </div>
+
+        <!-- Foglalkozás -->
+        <div class="form-group">
+          <label for="job">Foglalkozás</label>
+          <select id="job" formControlName="job">
+            <option *ngFor="let prof of professions" [value]="prof">{{ prof }}</option>
+          </select>
+        </div>
+
+        <!-- Aktív checkbox -->
+        <div class="form-group-checkbox">
+          <input id="active" type="checkbox" formControlName="active">
+          <label for="active">Aktív felhasználó</label>
+        </div>
+
+        <!-- Gombok -->
+        <div class="form-actions">
+          <a routerLink="/users" class="btn btn-secondary">Mégsem</a>
+          <button *ngIf="isEditMode" type="button" (click)="deleteUser()" class="btn btn-danger">Törlés</button>
+          <button type="submit" [disabled]="userForm.invalid" class="btn btn-primary">
+            {{ isEditMode ? 'Módosítások mentése' : 'Létrehozás' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

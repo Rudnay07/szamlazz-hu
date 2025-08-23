@@ -6,10 +6,17 @@ export const routes: Routes = [
     path: '',
     component: UserListComponent
   },
-
-  {
-    path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
+   {
+        path: 'users/new', 
+        loadComponent: () => import('./components/user-form/user-form.component').then(m => m.UserFormComponent)
+    },
+    {
+        path: 'users/edit/:id', 
+        loadComponent: () => import('./components/user-form/user-form.component').then(m => m.UserFormComponent)
+    },
+    {
+        path: '**',
+        redirectTo: '',
+        pathMatch: 'full'
+    }
 ];
