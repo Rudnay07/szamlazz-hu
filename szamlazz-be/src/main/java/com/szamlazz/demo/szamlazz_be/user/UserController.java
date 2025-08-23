@@ -1,6 +1,6 @@
 package com.szamlazz.demo.szamlazz_be.user;
 
-import com.szamlazz.demo.szamlazz_be.annotations.ApiV1Controller;
+import com.szamlazz.demo.szamlazz_be.annotations.ApiV1;
 import com.szamlazz.demo.szamlazz_be.exception.UserNotFoundException;
 import com.szamlazz.demo.szamlazz_be.response.ApiResponse;
 import jakarta.validation.Valid;
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@ApiV1Controller("/users")
-@RequestMapping("/api/v1/user")
+@ApiV1
+@RequestMapping("/users")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     private final UserService userService;
@@ -20,17 +20,19 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
+
     @GetMapping
     public ResponseEntity<ApiResponse<List<UserDto.Response>>> getAllUsers() {
         List<UserDto.Response> users = userService.findAllUsers();
-        return ResponseEntity.ok(ApiResponse.success("Users retrieved successfully.", users));
+        return ResponseEntity.ok(ApiResponse.success("User found.", users));
     }
 
-    @GetMapping("/{id}")
+   @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<UserDto.Response>> getUserById(@PathVariable Long id) {
         UserDto.Response user = userService.findUserById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
         return ResponseEntity.ok(ApiResponse.success("User found.", user));
+
     }
 
     @PostMapping
@@ -50,4 +52,5 @@ public class UserController {
         userService.deleteUser(id);
         return ResponseEntity.ok(ApiResponse.success("User deleted successfully."));
     }
+
 }
