@@ -1,12 +1,12 @@
 package com.szamlazz.demo.szamlazz_be.user;
 
 import com.szamlazz.demo.szamlazz_be.exception.UserNotFoundException;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 
@@ -20,12 +20,12 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public List<UserDto.Response> findAllUsers() {
-        return userRepository.findAll()
-                .stream()
-                .map(userMapper::toResponseDto)
-                .collect(Collectors.toList());
+    public Page<UserDto.Response> findAllUsers(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return userRepository.findAll(pageable)
+                .map(userMapper::toResponseDto);
     }
+
 
     public Optional<UserDto.Response> findUserById(Long id) {
         return userRepository.findById(id)

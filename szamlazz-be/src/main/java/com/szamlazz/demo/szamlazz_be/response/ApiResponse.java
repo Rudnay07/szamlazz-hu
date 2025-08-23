@@ -11,7 +11,6 @@ public record ApiResponse<T>(
 
 
     public static <T> ApiResponse<T> success(String message) {
-        // A második paraméter (data) null lesz.
         return new ApiResponse<>("success", message, null);
     }
     public static <T> ApiResponse<T> error(String message) {

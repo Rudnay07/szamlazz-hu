@@ -4,6 +4,7 @@ import com.szamlazz.demo.szamlazz_be.annotations.ApiV1;
 import com.szamlazz.demo.szamlazz_be.exception.UserNotFoundException;
 import com.szamlazz.demo.szamlazz_be.response.ApiResponse;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,16 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<UserDto.Response>>> getAllUsers() {
-        List<UserDto.Response> users = userService.findAllUsers();
+    public ResponseEntity<ApiResponse<Page<UserDto.Response>>> getAllUsers(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size
+    ) {
+        Page<UserDto.Response> users = userService.findAllUsers(page, size);
         return ResponseEntity.ok(ApiResponse.success("User found.", users));
     }
 
-   @GetMapping("/{id}")
+
+    @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<UserDto.Response>> getUserById(@PathVariable Long id) {
         UserDto.Response user = userService.findUserById(id)
                 .orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
