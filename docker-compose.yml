@@ -1,0 +1,30 @@
+services:
+  backend:
+    container_name: backend
+    build:
+      context: ./szamlazz-be
+      dockerfile: Dockerfile
+
+    ports:
+      - '8080:8080'
+    networks:
+      - szamlazz-network
+
+  frontend:
+    container_name: frontend
+    build:
+      context: ./szamlazz-fe
+      dockerfile: Dockerfile
+    ports:
+      - '4200:80'
+    depends_on:
+      - backend
+    networks:
+      - szamlazz-network
+
+volumes:
+  pgdata:
+
+networks:
+  szamlazz-network:
+    driver: bridge

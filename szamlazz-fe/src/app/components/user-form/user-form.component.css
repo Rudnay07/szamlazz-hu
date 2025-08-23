@@ -1,0 +1,151 @@
+:host {
+  display: block;
+  background-color: #f7f8fa;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #525f7f;
+  font-size: 0.9rem;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  font-size: 1rem;
+  color: #333;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-sizing: border-box; /* Ez biztosítja, hogy a padding ne növelje a méretet */
+}
+input[type="text"]::placeholder {
+  color: #adb5bd;
+}
+input[type="text"]:focus, select:focus {
+  outline: none;
+  border-color: #ff8c00;
+  box-shadow: 0 0 0 2px rgba(255, 140, 0, 0.25);
+}
+
+.form-group-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.form-group-checkbox label {
+  margin-bottom: 0;
+  margin-left: 0.75rem;
+}
+.form-group-checkbox input {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/* GOMBOK (hasonló, mint a listánál) */
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+.btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #ff8c00;
+  color: white;
+}
+.btn-primary:hover:not(:disabled) {
+  background-color: #e67e00;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #f0f3f6;
+  color: #525f7f;
+  border-color: #dee2e6;
+}
+.btn-secondary:hover:not(:disabled) {
+  background-color: #e9ecef;
+}
+
+.btn-danger {
+  background-color: #f5365c;
+  color: white;
+}
+.btn-danger:hover:not(:disabled) {
+  background-color: #ec0c38;
+}
+
+.error-container {
+  min-height: 20px; 
+  margin-top: 0.25rem;
+}
+
+.error-message {
+  color: #f5365c; 
+  font-size: 0.8rem;
+  font-weight: 500;
+  display: block;
+}
+
+
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #f5365c;
+  box-shadow: 0 0 0 2px rgba(245, 54, 92, 0.25);
+}

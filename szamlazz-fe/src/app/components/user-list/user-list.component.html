@@ -1,0 +1,45 @@
+<div class="container">
+
+  <div class="header">
+    <h1>Felhasználók</h1>
+    <a routerLink="/users/new" class="btn btn-primary">Létrehozás</a>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>Név</th>
+          <th>Foglalkozás</th>
+          <th>Aktív</th>
+          <th>Műveletek</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.lastname }} {{ user.firstname }}</td>
+          <td>{{ user.job }}</td>
+          <td>{{ user.active ? 'Igen' : 'Nem' }}</td>
+          <td class="actions">
+            <button (click)="deleteUser(user.id)" class="btn btn-danger">Törlés</button>
+            <a [routerLink]="['/users/edit', user.id]" class="btn btn-secondary">Módosítás</a>
+           
+          </td>
+        </tr>
+        <tr *ngIf="users.length === 0">
+          <td colspan="4" class="no-data">Nincsenek felhasználók az adatbázisban.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination" *ngIf="totalPages > 0">
+    <button class="btn-page" (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">
+      &lt;
+    </button>
+    <span class="page-info">{{ currentPage + 1 }}. oldal</span>
+    <button class="btn-page" (click)="goToPage(currentPage + 1)" [disabled]="currentPage >= totalPages - 1">
+      &gt;
+    </button>
+  </div>
+</div>
