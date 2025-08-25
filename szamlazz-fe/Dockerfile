@@ -19,7 +19,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 
-COPY --from=builder /app/dist/fornax-fe/browser/* /usr/share/nginx/html
+COPY --from=builder /app/dist/szamlazz-fe/browser/* /usr/share/nginx/html
 
 # Port megadása
 EXPOSE 80

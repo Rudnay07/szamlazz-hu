@@ -53,7 +53,7 @@ input[type="text"], select {
   font-size: 1rem;
   color: #333;
   transition: border-color 0.2s, box-shadow 0.2s;
-  box-sizing: border-box; /* Ez biztosítja, hogy a padding ne növelje a méretet */
+  box-sizing: border-box; 
 }
 input[type="text"]::placeholder {
   color: #adb5bd;
@@ -87,7 +87,7 @@ input[type="text"]:focus, select:focus {
   border-top: 1px solid #e9ecef;
 }
 
-/* GOMBOK (hasonló, mint a listánál) */
+
 .btn {
   display: inline-block;
   padding: 0.6rem 1.2rem;
