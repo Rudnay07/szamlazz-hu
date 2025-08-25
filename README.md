@@ -1,10 +1,13 @@
 # Számlázz App
 
-Ez a projekt egy **frontend + backend alkalmazás**, Angular frontendből és Java Spring backendből áll, és teljesen **Docker Compose**-szal futtatható.
 
+
+Ez a projekt egy **frontend + backend alkalmazás**, Angular frontendből és Java Spring Boot backendből áll, és teljesen **Docker Compose**-szal futtatható.
+Célja egy egyszerű felhasználókezelő rendszer megvalósítása, ahol a felhasználókat létre lehet hozni, módosítani, törölni, illetve listázni lapozott táblázatban.
+A felület illeszkedik a Számlázz.hu design hangulatához, és tartalmaz legalább egy újrafelhasználható komponens (pl. button).
 ---
 
-## 🐳 Követelmények
+## Követelmények
 
 - [Docker](https://www.docker.com/get-started) >= 24.x
 - [Docker Compose](https://docs.docker.com/compose/) >= 2.x
@@ -12,7 +15,7 @@ Ez a projekt egy **frontend + backend alkalmazás**, Angular frontendből és Ja
 
 ---
 
-## ⚡ Projekt struktúra
+## Projekt struktúra
 
 ```szamlazz/
 ├─ szamlazz-be/ # Backend (Spring Boot)
@@ -34,3 +37,10 @@ Először klónozd a repót:
 
 Ha a backend fut, már tudod használni a frontendet az adatok bevitelére és megjelenítésére.
 <a href="http://localhost:4200/" target="_blank" rel="noopener noreferrer">Frontend</a>
+
+## AI használat
+```
+A fejlesztés során mesterséges intelligencia eszközöket használtam:
+Gemini 2.5 Pro: segített a angular kódgenerálásban és hibakeresésben.
+AI főként a fejlesztést gyorsította és ötleteket adott, de minden logikát és validációt manuálisan implementáltam.
+```
